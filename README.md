@@ -12,3 +12,5 @@ live-server --no-browser
 2. Refresh the URL in simple browser to see the output
 
 GitHub Pages Link- https://kondakavuri-pavani.github.io/Shop-Easy/
+
+Deploy Link- https://shop-easy.bytexl.live/
