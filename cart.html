@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - ShopEasy</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function displayCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartContainer = document.getElementById('cart-container');
+            cartContainer.innerHTML = ""; // Clear previous content
+            
+            if (cart.length === 0) {
+                cartContainer.innerHTML = "<p>Your cart is empty!</p>";
+            } else {
+                cart.forEach(item => {
+                    const productElement = document.createElement('div');
+                    productElement.classList.add('cart-item');
+                    productElement.innerHTML = `
+                        <span>${item}</span>
+                        <button onclick="removeFromCart('${item}')">Remove</button>
+                    `;
+                    cartContainer.appendChild(productElement);
+                });
+            }
+        }
+
+        function removeFromCart(product) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item !== product);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart(); // Refresh the cart display
+        }
+
+        window.onload = displayCart;
+    </script>
+    <style>
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Your Cart</h1>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <section id="cart-container">
+        <!-- Cart items will be displayed here -->
+    </section>
+
+    <footer>
+        <p>Contact: example@gmail.com</p>
+    </footer>
+</body>
+</html>
